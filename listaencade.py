@@ -42,3 +42,24 @@ class ListaEncadeada:
             return
         novo_no.next = current.next
         current.next = novo_no
+
+    # Define a função de remover um valor (ou a primeira instância do valor encontrada na lista, caso haja mais de uma) especificado da lista (valor dos dados, não da posição).
+    def remove(self, data):
+        current = self.cabeca
+        previous = None
+        # Checa se o valor dos dados é o valor da instância do nó sendo checado.
+        while current:
+            if current.data == data:
+                # Se for, e a instância do nó tiver um nó precedendo ela, então o atributo próximo do nó anterior se torna o próximo do nó sendo instanciado, efetivamente removendo o nó, já que ele não possui mais nenhuma referência a ele.
+                if previous:
+                    previous.next = current.next
+                #  Caso não seja, o atributo próximo da instância do nó sendo checado se torna a cabeça da lista.
+                else:
+                    self.head = current.next
+                return
+            previous = current
+            current = current.next
+        # Caso o while acabe (isso significa que a lista acabou e o valor de current é None), será imprimido uma mensagem informando que o valor não foi encontrado.
+        print(f"Valor {data} não encontrado na lista")
+
+    
